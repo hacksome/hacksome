@@ -1,0 +1,29 @@
+﻿{
+"data": [
+  {
+    "name": "social networks",
+    "score": 38.7,
+    "totaltweets": 12
+  },
+  {
+    "name": "direct",
+    "score": 38.7,
+    "totaltweets": 111
+  },
+  {
+    "name": "mmx",
+    "score": 4,
+    "totaltweets": 111
+  },
+  {
+    "name": "social networks",
+    "score": 38.7,
+    "totaltweets": 23
+  },
+  {
+    "name": "social networks",
+    "score": 38.7,
+   "totaltweets": 48
+  }
+]
+}

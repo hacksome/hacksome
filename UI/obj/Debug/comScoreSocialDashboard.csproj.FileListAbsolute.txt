@@ -13,3 +13,11 @@ C:\hacksome\hackcode\UI\bin\nunit.framework.xml
 C:\hacksome\hackcode\UI\obj\Debug\comScoreSocialDashboard.csprojResolveAssemblyReference.cache
 C:\hacksome\hackcode\UI\obj\Debug\comScoreSocialDashboard.dll
 C:\hacksome\hackcode\UI\obj\Debug\comScoreSocialDashboard.pdb
+C:\Users\xding\GitHub\Twitter\hacksome\UI\bin\comScoreSocialDashboard.dll
+C:\Users\xding\GitHub\Twitter\hacksome\UI\bin\comScoreSocialDashboard.pdb
+C:\Users\xding\GitHub\Twitter\hacksome\UI\bin\nunit.framework.dll
+C:\Users\xding\GitHub\Twitter\hacksome\UI\bin\Tweetinvi.API.dll
+C:\Users\xding\GitHub\Twitter\hacksome\UI\bin\nunit.framework.xml
+C:\Users\xding\GitHub\Twitter\hacksome\UI\obj\Debug\comScoreSocialDashboard.csprojResolveAssemblyReference.cache
+C:\Users\xding\GitHub\Twitter\hacksome\UI\obj\Debug\comScoreSocialDashboard.dll
+C:\Users\xding\GitHub\Twitter\hacksome\UI\obj\Debug\comScoreSocialDashboard.pdb

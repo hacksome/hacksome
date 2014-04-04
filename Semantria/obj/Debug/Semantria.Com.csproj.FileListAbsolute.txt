@@ -12,3 +12,8 @@ C:\hacksome\hackcode\Semantria\bin\Debug\Semantria.Com.pdb
 C:\hacksome\hackcode\Semantria\obj\Debug\Semantria.Com.csprojResolveAssemblyReference.cache
 C:\hacksome\hackcode\Semantria\obj\Debug\Semantria.Com.dll
 C:\hacksome\hackcode\Semantria\obj\Debug\Semantria.Com.pdb
+C:\Users\xding\GitHub\Twitter\hacksome\Semantria\bin\Debug\Semantria.Com.dll
+C:\Users\xding\GitHub\Twitter\hacksome\Semantria\bin\Debug\Semantria.Com.pdb
+C:\Users\xding\GitHub\Twitter\hacksome\Semantria\obj\Debug\Semantria.Com.csprojResolveAssemblyReference.cache
+C:\Users\xding\GitHub\Twitter\hacksome\Semantria\obj\Debug\Semantria.Com.dll
+C:\Users\xding\GitHub\Twitter\hacksome\Semantria\obj\Debug\Semantria.Com.pdb
