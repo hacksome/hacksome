@@ -1,0 +1,14 @@
+C:\hacksome\SemantriaDotNetSDK\Semantria\bin\Debug\Semantria.Com.dll
+C:\hacksome\SemantriaDotNetSDK\Semantria\bin\Debug\Semantria.Com.pdb
+C:\hacksome\SemantriaDotNetSDK\Semantria\obj\Debug\Semantria.Com.csprojResolveAssemblyReference.cache
+C:\hacksome\SemantriaDotNetSDK\Semantria\obj\Debug\Semantria.Com.dll
+C:\hacksome\SemantriaDotNetSDK\Semantria\obj\Debug\Semantria.Com.pdb
+C:\hacksome\code\Semantria\bin\Debug\Semantria.Com.dll
+C:\hacksome\code\Semantria\bin\Debug\Semantria.Com.pdb
+C:\hacksome\code\Semantria\obj\Debug\Semantria.Com.dll
+C:\hacksome\code\Semantria\obj\Debug\Semantria.Com.pdb
+C:\hacksome\hackcode\Semantria\bin\Debug\Semantria.Com.dll
+C:\hacksome\hackcode\Semantria\bin\Debug\Semantria.Com.pdb
+C:\hacksome\hackcode\Semantria\obj\Debug\Semantria.Com.csprojResolveAssemblyReference.cache
+C:\hacksome\hackcode\Semantria\obj\Debug\Semantria.Com.dll
+C:\hacksome\hackcode\Semantria\obj\Debug\Semantria.Com.pdb
