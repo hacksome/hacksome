@@ -21,7 +21,8 @@ namespace comScoreSocialDashboard
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
-            context.Response.Write(string.Format("{{\"data\": {0} }}", _getTweetPieCount().ToString()));
+            context.Response.Write(string.Format("{{\"data\": {0} }}"
+                , string.IsNullOrEmpty(context.Request.QueryString["b"]) ? _getTweetPieCount() : _getTweetBarData()));
         }
 
         public bool IsReusable
@@ -82,12 +83,6 @@ namespace comScoreSocialDashboard
 
             _populateSemantic(sems);
 
-            //IEnumerable<SemanticElement> results = _keys.Select(x => new SemanticElement (x, svc.GeTweetsByKeyWord(x)));
-
-            //int totalCount = results.Sum(x => x.Value.Count);
-
-            //Dictionary<string, double> data = results.ToDictionary(x => x.Key, x => (double) x.Value.Count/totalCount);
-
             var resultGroups = sems.GroupBy(x => x.ProductId);
 
             int i = 0;
@@ -106,6 +101,38 @@ namespace comScoreSocialDashboard
         }
 
 
+        private JArray _getTweetBarData()
+        {
+            var attrArr = new JArray();
+            var svc = new Twitterservice();
+
+            var sems = new List<SemanticElement>();
+            foreach (var key in _keys)
+            {
+                List<ITweet> tweet = svc.GeTweetsByKeyWord(key);
+                sems.AddRange(tweet.Select(x => new SemanticElement(key, x)));
+            }
+
+            _populateSemantic(sems);
+
+            var resultGroups = sems.GroupBy(x => x.ProductId);
+
+            int i = 0;
+            foreach (var group in resultGroups)
+            {
+                double score = group.Sum(x => x.SemanticData.SentimentScore) / group.Count();
+                var o = new JObject();
+                o.Add("pos", 2*i + 1);
+                o.Add("score", score * 100);
+                attrArr.Add(new JObject
+                           {
+                               {"label", new JValue(group.Key)},
+                               {"data", o},
+                               {"color", new JValue(Colors[i++ % Colors.Count])}
+                           });
+            }
+            return attrArr;
+        }
 
         private void _populateSemantic(List<SemanticElement> sems)
         {

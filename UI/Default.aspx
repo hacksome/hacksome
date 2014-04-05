@@ -55,7 +55,7 @@
                             <div class="widget-header widget-header-flat widget-header-small">
                                 <h5>
                                     <i class="icon-signal"></i>
-                                    Trend 
+                                    Sentiment 
                                 </h5>
 
                                 <div class="widget-toolbar no-border">

@@ -69,6 +69,5 @@ namespace comScoreSocialDashboard
             return attrArr;
         }
 
-
     }
 }
