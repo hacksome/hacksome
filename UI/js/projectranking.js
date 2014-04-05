@@ -1,11 +1,8 @@
 ﻿jQuery(function ($) {
-    var timeline = [];
 
-    function getPopularityRanking(pos) {
-        $.getJSON('test/testdata/popularityrankingdata.txt').done(function (data) {
-           
+    function getPopularityRanking() {
+        $.getJSON('SemanticScoreData.ashx').done(function (data) {
             setData(data);
-           
         });
     }
 
@@ -14,7 +11,7 @@
             var ranking = data.data[i];
 
             $('#projectrankingtable').dataTable().fnAddData(
-                [ranking.name, ranking.score, ranking.totaltweets, 0]
+                [ranking.name, ranking.score.toFixed(1), ranking.totaltweets,ranking.xfactor.toFixed(1)]
                 );
         }
     }
