@@ -7,6 +7,7 @@ using System.Web;
 using Tweetinvi;
 using TweetinviCore.Enum;
 using TweetinviCore.Interfaces;
+using TweetinviCore.Interfaces.Models;
 
 namespace comScoreSocialDashboard.services
 {
@@ -18,6 +19,30 @@ namespace comScoreSocialDashboard.services
         const string TokenConsumerKey = "YKwZWc7vmSU8svBHLzM4yQ";
         const string TokenConsumerSecret = "vZEYQ98YpJP41SGTuXh6hw2KnsiizkNERhnotr4NbM";
 
+        private List<string> _preferedkeywordList = new List<string>
+                                        {
+                                            "comscore", 
+                                            "comscore vce, comScore Validated Campaign Essentials", 
+                                            "comScore Video Metrix", 
+                                            "comScore multiplatform, Media Metrix Multi-Platform", 
+                                            "comScore digital analytics",
+                                            "comScore Ad Metrix",
+                                            "comScore Mobile Metrix",
+                                            "comScore PlanMetrix",
+                                            "comscore mce, comScore Validated Media Essentials",
+                                            "comScore Action Lift",
+                                            "comScore Survey Lift",
+                                            "comScore Subscriber Analytics",
+                                            "comScore Subscriber Analytics Marketing",
+                                            "comScore Offline Sales Lift",
+                                            "comScore e-Commerce Measurement",
+                                            "comScore Mobile Metrix",
+                                            "comScore Social Essentials",
+                                            "comScore Segment Metrix",
+                                            "comScore qSearch",
+                                            "comScore Device Essentials",
+                                            "comScore Reach/Frequency"
+                                        }; 
         public Twitterservice()
         {
             TwitterCredentials.SetCredentials(AccessToken, AccessTokenSecret, TokenConsumerKey, TokenConsumerSecret);
@@ -25,17 +50,23 @@ namespace comScoreSocialDashboard.services
 
         public class TwitterUser
         {
-            public string Name { get; set; }
+            public string ScreenName { get; set; }
             public string Location { get; set; }
             public int FollowerCount { get; set; }
             public int FavoriteCount { get; set; }
             public int FriendsCount { get; set; }
+            public string ProfileImgUrl { get; set; }
         }
 
-        public void TestThsi()
+        public class TweetInfo
         {
-            
+            public  string Msg { get; set; }
+            public  DateTime Date { get; set; }
+            public string MsgId { get; set; }
+            public ICoordinates Coordinates{get; set;}
+            public TwitterUser User { get; set; }
         }
+
         public TwitterUser  GetTwitterUser()
         {
             var x = User.GetUserFromScreenName("comscore");
@@ -45,11 +76,11 @@ namespace comScoreSocialDashboard.services
         
             return new TwitterUser
                    {
-                       Name = x.Name,
+                       ScreenName = x.Name,
                        Location= x.Location,
                        FollowerCount = x.FollowersCount,
                        FavoriteCount = x.FavouritesCount,
-                       FriendsCount = x.FriendsCount,
+                       FriendsCount = x.FriendsCount
                        
                    };
             // User_GetCurrentUser();
@@ -85,38 +116,37 @@ namespace comScoreSocialDashboard.services
             return Search.SearchTweets(keyword);
         }
 
-        public IList<ITweet> GetSearchByKeyWordAndLocation(List<string> keywords)
-        {    var searchParameter = Search.GenerateSearchTweetParameter("justin bieber");
-
-          //  searchParameter.Locale = "Us";
-            searchParameter.SetGeoCode(Geo.GenerateCoordinates(-122.398720, 37.781157), 100, DistanceMeasure.Miles);
-            searchParameter.Lang = Language.English;
-            searchParameter.SearchType = SearchResultType.Popular;
-            searchParameter.MaximumNumberOfResults = 100;
-          //  searchParameter.Until = new DateTime(2014, 12, 1);
-            //searchParameter.SinceId = 399616835892781056;
-           // searchParameter.MaxId = 405001488843284480;
-
-            return Search.SearchTweets(searchParameter);
+        public List<TweetInfo> GetSearchByKeyWordAndLocation(List<string> keywords = null)
+        {
+            keywords = keywords ?? _preferedkeywordList;
+            List<TweetInfo> infoList = new List<TweetInfo>();
+            foreach (var keyword in keywords)
+            {
+                var words = keyword.Split(new [] {','});
+                foreach (string t in words)
+                {
+                    var searchParameter = Search.GenerateSearchTweetParameter(t);
+                    var tweets = Search.SearchTweets(searchParameter);
+                    foreach (var tweet in tweets)
+                    {
+                        infoList.Add(new TweetInfo
+                                     {
+                                         Msg = tweet.Text,
+                                         MsgId = tweet.IdStr,
+                                         Date = tweet.CreatedAt,
+                                         Coordinates = tweet.Coordinates,
+                                         User = new TwitterUser
+                                                {
+                                                    ScreenName = tweet.Creator.ScreenName,
+                                                    ProfileImgUrl = tweet.Creator.ProfileImageUrl
+                                                }
+                                     });
+                    }
+                }
+            }
+            return infoList;
         } 
 
-        private static void Search_SearchTweet()
-        {
-            // IF YOU DO NOT RECEIVE ANY TWEET, CHANGE THE PARAMETERS!
-
-            var searchParameter = Search.GenerateSearchTweetParameter("obama");
-
-            searchParameter.SetGeoCode(Geo.GenerateCoordinates(-122.398720, 37.781157), 1, DistanceMeasure.Miles);
-            searchParameter.Lang = Language.English;
-            searchParameter.SearchType = SearchResultType.Popular;
-            searchParameter.MaximumNumberOfResults = 100;
-            searchParameter.Until = new DateTime(2013, 12, 1);
-            searchParameter.SinceId = 399616835892781056;
-            searchParameter.MaxId = 405001488843284480;
-
-            var tweets = Search.SearchTweets(searchParameter);
-            tweets.ForEach(t => Console.WriteLine(t.Text));
-        }
 
         private static void Search_FilteredSearch()
         {
