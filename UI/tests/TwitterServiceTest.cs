@@ -16,7 +16,7 @@ namespace comScoreSocialDashboard.tests
             var x = new Twitterservice().GetTwitterUser();
 
             Console.WriteLine();
-            Console.WriteLine(x.Name);
+            
         }
 
         [Test]
@@ -43,12 +43,19 @@ namespace comScoreSocialDashboard.tests
         public void TestGeoSearch()
         {
 
-            var tweets = new Twitterservice().GetSearchByKeyWordAndLocation(new List<string>{"agjag"});
+            var tweets = new Twitterservice().GetSearchByKeyWordAndLocation();
             
             Console.WriteLine(tweets.Count);
+            
+            Console.WriteLine();
+            //tweets = tweets.Take(2).ToList();
+            
             foreach (var tweet in tweets)
             {
-                Console.WriteLine(tweet.Text);
+                Console.WriteLine(tweet.Coordinates);
+                Console.WriteLine(tweet.Msg);
+                //Console.WriteLine(tweet.Creator.ProfileBackgroundColor);
+
                 //Console.WriteLine(tweet.);
             }
         }
