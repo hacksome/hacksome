@@ -1,0 +1,130 @@
+﻿{
+  "Ranking": {
+    "Name": "honda",
+    "Score": 5.0,
+    "Index": 4.0,
+    "Total": 15
+  },
+  "TweetInfos": [
+    {
+      "Msg": "@0719_sumi え、やってくる",
+      "Date": "2014-04-05T11:38:06-05:00",
+      "MsgId": "452485338993147905",
+      "Long": 0.0,
+      "Lat": 0.0,
+      "User": {
+        "ScreenName": "honda_da_da_",
+        "Location": "ないと思うけど無断転載禁止",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/452151587671007232/GMQ5hOjQ_normal.jpeg"
+      }
+    },
+    {
+      "Msg": "Lectura y café.. #HablemosDelHondaCrosstour #EnVivoPR #Honda #cafe #Cafe&amp;Crepes #Sabado #PuertoRico http://t.co/esC4SpsGCX",
+      "Date": "2014-04-05T11:38:03-05:00",
+      "MsgId": "452485327643754496",
+      "Long": 0.0,
+      "Lat": 0.0,
+      "User": {
+        "ScreenName": "JoseSantiago25",
+        "Location": "ÜT: 18.38673,-66.253498",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/434893103531835393/kWqaEG0Q_normal.png"
+      }
+    },
+    {
+      "Msg": "@emoxithasedlove che ye ahora escribis en japonés ???? Q honda guey !!!???",
+      "Date": "2014-04-05T11:38:01-05:00",
+      "MsgId": "452485320249188352",
+      "Long": 0.0,
+      "Lat": 0.0,
+      "User": {
+        "ScreenName": "virginia_rodr",
+        "Location": "",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/449706676636364801/uEqPxaws_normal.jpeg"
+      }
+    },
+    {
+      "Msg": "I've been seeing a lot of honda civic's but I wanna honda accord",
+      "Date": "2014-04-05T11:37:56-05:00",
+      "MsgId": "452485298661122048",
+      "Long": -77.0364641,
+      "Lat": 38.9072309,
+      "User": {
+        "ScreenName": "natural_teaser",
+        "Location": "DC",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/451894509690187777/CDPQK3cZ_normal.jpeg"
+      }
+    },
+    {
+      "Msg": "@honda_da_da_ なんか、メカクシティアクターズの公式サイトがリニューアルして、団員№をたして21になったらケータイの待ち受け貰えるの\n何種類かるかわからないからひたすらやってみてるの",
+      "Date": "2014-04-05T11:37:49-05:00",
+      "MsgId": "452485269610975232",
+      "Long": 0.0,
+      "Lat": 0.0,
+      "User": {
+        "ScreenName": "0719_sumi",
+        "Location": "",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/344513261572948347/163acf4c76527468b157a812cce3cb96_normal.jpeg"
+      }
+    },
+    {
+      "Msg": "Sales issue a statement about danseur noble honda yamaha else tvs: VAZml",
+      "Date": "2014-04-05T11:37:48-05:00",
+      "MsgId": "452485266553311232",
+      "Long": 0.0,
+      "Lat": 0.0,
+      "User": {
+        "ScreenName": "HarryNatalie1",
+        "Location": "",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/3505635713/d36be38db3ba810fc3dfcfd315fa063c_normal.jpeg"
+      }
+    },
+    {
+      "Msg": "@cs_86789 せんきゅーふぉーゆー",
+      "Date": "2014-04-05T11:37:39-05:00",
+      "MsgId": "452485228401926144",
+      "Long": 0.0,
+      "Lat": 0.0,
+      "User": {
+        "ScreenName": "Honda_bsk",
+        "Location": "",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/452181908097470464/DCYt0Tfb_normal.jpeg"
+      }
+    },
+    {
+      "Msg": "RT @bakatta_24: 新たなバカッターが現れました\n本当に許せないので、拡散お願いします！！ http://t.co/jLhJONH6zy",
+      "Date": "2014-04-05T11:37:27-05:00",
+      "MsgId": "452485177948659712",
+      "Long": 140.4774867,
+      "Lat": 36.3715555,
+      "User": {
+        "ScreenName": "honda_tu",
+        "Location": "雑誌",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/431386576921165824/OwJJK5iO_normal.jpeg"
+      }
+    },
+    {
+      "Msg": "[VENDO] Honda crm / cre 125 - 2002  http://t.co/PReHoAQz46 http://t.co/GDmqBlNijW",
+      "Date": "2014-04-05T11:37:27-05:00",
+      "MsgId": "452485174668709888",
+      "Long": 0.0,
+      "Lat": 0.0,
+      "User": {
+        "ScreenName": "MOTOESCOOTER",
+        "Location": "",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/430230331438800896/yonUiCCN_normal.png"
+      }
+    },
+    {
+      "Msg": "I drive a Honda.",
+      "Date": "2014-04-05T11:37:23-05:00",
+      "MsgId": "452485157920854018",
+      "Long": -122.6681304,
+      "Lat": 45.685927,
+      "User": {
+        "ScreenName": "NOIRFANCY",
+        "Location": "Target",
+        "ProfileImgUrl": "http://pbs.twimg.com/profile_images/3512098869/64602ff86780249679efdba073df56a7_normal.jpeg"
+      }
+    }
+  ]
+}

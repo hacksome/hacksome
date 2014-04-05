@@ -1,22 +1,13 @@
-﻿var timeline = [];
-
-function getTweets(pos) {
-    $.getJSON('twittertweets.ashx?map=true').done(function (data) {
-        timeline.push(data.statuses);
-        setMarker(data);
-    });
-}
-
-// used when clicking on marker
+﻿// used when clicking on marker
 function bindInfoW(marker, contentString, infowindow) {
     google.maps.event.addListener(marker, 'click', function () {
-        var timeline = [];
+//        var timeline = [];
         infowindow.setContent(contentString);
         infowindow.open(map, marker);
     });
 }
 
-function setMarker(data) {
+function setMarker(data, map) {
     for (var i = 0; i < data.length; i++) {
         if (data[i].Long != 0.0 ||data[i].Lat != 0.0) {
             var dat = data[i];
@@ -28,8 +19,6 @@ function setMarker(data) {
 
             var aviLink = "<a href='" + handle + "' target='_blank'><img class='avi' src=" + avi + "></img></a>";
             var wLogo = aviLink + "<a href='" + handle + "' target='_blank'>@" + sn + "</a>: " + msg + dt;
-            var tweet = "<a href='" + handle + "' target='_blank'>@" + sn + "</a>:" + msg;
-            var bq = "<blockquote class=\"twitter-tweet\"><a href=\"https://twitter.com/" + sn + "/status/" + dat.MsgId + "\"></a></blockquote>";
 
             var pinIcon = new google.maps.MarkerImage(
 			    avi,
