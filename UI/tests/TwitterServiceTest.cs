@@ -6,9 +6,8 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Web;
 using comScoreSocialDashboard.services;
-using GoogleMapsApi;
-using GoogleMapsApi.Entities.Geocoding.Request;
-using GoogleMapsApi.Entities.Geocoding.Response;
+using Geocoding;
+using Geocoding.Google;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -50,7 +49,7 @@ namespace comScoreSocialDashboard.tests
         public void TestGeoSearch()
         {
 
-            var tweets = new Twitterservice().GetSearchByKeyWordAndLocation().OrderBy(x => x.Date).ToList();
+            var tweets = new Twitterservice().GetSearchByKeyWordAndLocation(true).OrderBy(x => x.Date).ToList();
             
             Console.WriteLine(tweets[0].Date);
             Console.WriteLine(tweets.Count);
@@ -70,14 +69,15 @@ namespace comScoreSocialDashboard.tests
         [Test]
         public void GeoCode()
         {
-            // Geocode
-            var geocodeRequest = new GeocodingRequest
-            {
-                Address = "new york city",
-            };
+            GoogleGeocoder geocoder = new GoogleGeocoder() ;
+            var addresses = geocoder.Geocode("Mumbai, India");
 
-            GeocodingResponse geocode = GoogleMaps.Geocode.Query(geocodeRequest);
-            Console.WriteLine(geocode);
+            var country = addresses.Where(a => !a.IsPartialMatch).Select(a => a[GoogleAddressType.Country]).First();
+            Console.WriteLine("Country: " + addresses.ToList()[0].Coordinates.Latitude + ", " + country.ShortName);
+//            IGeocoder geocoder = new GoogleGeocoder() { ApiKey = "AIzaSyDrgMqxT3DIKg4PQkuqNeqbjOCZwLQKxc0" };
+//       var addresses = geocoder.Geocode("").ToArray();
+////Console.WriteLine("Formatted: " +addresses  .FormattedAddress); //Formatted: 1600 Pennslyvania Avenue Northwest, Presiden'ts Park, Washington, DC 20500, USA
+//        Console.WriteLine("Coordinates: " + addresses[0].Coordinates.Latitude + ", " + addresses[0].Coordinates.Longitude); //Coordinates: 38.8978378, -77.0365123
         }
 
     }

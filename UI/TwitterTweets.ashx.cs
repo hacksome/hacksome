@@ -17,7 +17,7 @@ namespace comScoreSocialDashboard
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "application/json";
-            if (context.Request.QueryString["action"] == "map")
+            if (!String.IsNullOrEmpty(context.Request.QueryString["map"]))
             {
                 context.Response.Write(_getTweetsForMap());
             }
@@ -31,7 +31,7 @@ namespace comScoreSocialDashboard
         {
             var svc = new Twitterservice();
 
-            var tweets = svc.GetSearchByKeyWordAndLocation();
+            var tweets = svc.GetSearchByKeyWordAndLocation(true);
 
             return JsonConvert.SerializeObject(tweets);
         }

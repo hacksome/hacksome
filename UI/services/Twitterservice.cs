@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Web;
+using Geocoding.Google;
 using Tweetinvi;
 using TweetinviCore.Enum;
 using TweetinviCore.Interfaces;
@@ -133,9 +135,10 @@ namespace comScoreSocialDashboard.services
             return Search.SearchTweets(keyword);
         }
 
-        public List<TweetInfo> GetSearchByKeyWordAndLocation(List<string> keywords = null)
+        public List<TweetInfo> GetSearchByKeyWordAndLocation(bool geoCode = false, List<string> keywords = null)
         {
             keywords = keywords ?? _preferedkeywordList;
+            GoogleGeocoder geocoder = new GoogleGeocoder() ;
             List<TweetInfo> infoList = new List<TweetInfo>();
             foreach (var keyword in keywords)
             {
@@ -148,21 +151,51 @@ namespace comScoreSocialDashboard.services
                     var tweets = Search.SearchTweets(searchParameter);
                     foreach (var tweet in tweets)
                     {
-                        
-                        infoList.Add(new TweetInfo
+                        double latitude = 0.0;
+                        double longitude = 0.0;
+
+                        var info = new TweetInfo
                                      {
                                          Msg = tweet.Text,
                                          MsgId = tweet.IdStr,
                                          Date = tweet.CreatedAt,
-                                         Lat =tweet.Coordinates!=null? tweet.Coordinates.Latitude:0,
-                                         Long = tweet.Coordinates!=null? tweet.Coordinates.Longitude:0,
                                          User = new TwitterUser
                                                 {
                                                     ScreenName = tweet.Creator.ScreenName,
                                                     ProfileImgUrl = tweet.Creator.ProfileImageUrl,
                                                     Location = tweet.Creator.Location
                                                 }
-                                     });
+                                     };
+                        if (geoCode)
+                        {
+                            if (tweet.Coordinates != null)
+                            {
+                                latitude = tweet.Coordinates.Latitude;
+                                longitude = tweet.Coordinates.Longitude;
+                            } else if (!String.IsNullOrEmpty(tweet.Creator.Location))
+                            {
+                                try
+                                {
+                                    var address = geocoder.Geocode(tweet.Creator.Location.Trim()).ToList();
+                                    //var geo= address.Where(a => !a.IsPartialMatch).Select(a => a[GoogleAddressType.Country]).First();
+
+                                    //if(geo !=null){
+                                    if (address.Count > 0)
+                                    {
+                                        latitude = address.ToList()[0].Coordinates.Latitude;
+                                        longitude = address.ToList()[0].Coordinates.Longitude;
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine(tweet.Creator.Location);
+                                }
+                            }
+                            info.Lat = latitude;
+                            info.Long = longitude;
+                                      
+                        }
+                        infoList.Add(info);
                     }
                 }
             }
