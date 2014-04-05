@@ -390,6 +390,7 @@
     <Content Include="js\default.js" />
     <Content Include="js\geolocation.js" />
     <Content Include="js\nolocation.js" />
+    <Content Include="js\projectranking.js" />
     <Content Include="test\testdata\piechartdata.txt" />
     <Content Include="test\testdata\popularityrankingdata.txt" />
     <Content Include="test\testdata\trenddata.txt" />
