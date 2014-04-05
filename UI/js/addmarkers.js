@@ -1,7 +1,7 @@
 ﻿var timeline = [];
 
 function getTweets(pos) {
-    $.getJSON('test/testdata/dummytwitter.txt').done(function (data) {
+    $.getJSON('twittertweets.ashx?map=true').done(function (data) {
         timeline.push(data.statuses);
         setMarker(data);
     });
@@ -17,19 +17,19 @@ function bindInfoW(marker, contentString, infowindow) {
 }
 
 function setMarker(data) {
-    for (i = 0; i < data.statuses.length; i++) {
-        if (data.statuses[i].geo != null) {
-            var dat = data.statuses[i];
-            var sn = dat.user.screen_name;
-            var msg = dat.text;
-            var avi = dat.user.profile_image_url;
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].Long != 0.0 ||data[i].Lat != 0.0) {
+            var dat = data[i];
+            var sn = dat.User.ScreenName;
+            var msg = dat.Msg;
+            var avi = dat.User.ProfileImgUrl;
             var handle = "http://www.twitter.com/" + sn;
-            var dt = "<br><br><right><small>" + dat.created_at + "</small></right>";
+            var dt = "<br><br><right><small>" + dat.Date + "</small></right>";
 
             var aviLink = "<a href='" + handle + "' target='_blank'><img class='avi' src=" + avi + "></img></a>";
-            var wLogo = aviLink + "<a href='" + handle + "' target='_blank'>@" + sn + "</a>: " + dat.text + dt;
-            var tweet = "<a href='" + handle + "' target='_blank'>@" + dat.user.screen_name + "</a>:" + dat.text;
-            var bq = "<blockquote class=\"twitter-tweet\"><a href=\"https://twitter.com/" + sn + "/status/" + dat.id + "\"></a></blockquote>";
+            var wLogo = aviLink + "<a href='" + handle + "' target='_blank'>@" + sn + "</a>: " + msg + dt;
+            var tweet = "<a href='" + handle + "' target='_blank'>@" + sn + "</a>:" + msg;
+            var bq = "<blockquote class=\"twitter-tweet\"><a href=\"https://twitter.com/" + sn + "/status/" + dat.MsgId + "\"></a></blockquote>";
 
             var pinIcon = new google.maps.MarkerImage(
 			    avi,
@@ -43,7 +43,7 @@ function setMarker(data) {
                 map: map,
                 icon: pinIcon,
                 title: msg,
-                position: new google.maps.LatLng(data.statuses[i].geo.coordinates[0], data.statuses[i].geo.coordinates[1])
+                position: new google.maps.LatLng(data[i].Lat, data[i].Long)
             });
 
             marker.setAnimation(google.maps.Animation.DROP);

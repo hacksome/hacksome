@@ -189,3 +189,11 @@
 
 	
 </asp:Content>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderScripts" ID="Content2" runat="server">
+    
+        <script type="text/javascript" src="js/default.js"></script>
+    	<script type="text/javascript" src="js/projectranking.js"></script>
+    	<script type="text/javascript" src="js/mostrecenttweets.js"></script>
+
+</asp:Content>
+    

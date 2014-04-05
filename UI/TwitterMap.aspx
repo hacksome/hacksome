@@ -1,40 +1,63 @@
-﻿
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">--> 
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TwitterMap.aspx.cs" Inherits="comScoreSocialDashboard.TwitterMap"
+    MasterPageFile="~/Master.master" %>
 
-	<%--<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>--%>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderBody" ID="Content1" runat="server">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <script type="text/javascript">
+            try {
+                ace.settings.check('breadcrumbs', 'fixed');
+            } catch (e) { }
+        </script>
 
-	<title>Twitter Maps</title>
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home home-icon"></i>
+                <a href="#">Home</a>
+            </li>
+            <li class="active">Dashboard</li>
+        </ul>
+        <!-- .breadcrumb -->
 
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+        <div class="nav-search" id="nav-search">
+            <form class="form-search">
+                <span class="input-icon">
+                    <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                    <i class="icon-search nav-search-icon"></i>
+                </span>
+            </form>
+        </div>
+        <!-- #nav-search -->
+    </div>
+
+
+
+
+    <div class="page-content">
+        <div class="page-header">
+            <h1>Twitter Map
+								<small>
+                                    <i class="icon-double-angle-right"></i>
+                                    Twitter + Google Map
+                                </small>
+            </h1>
+        </div>
+            <div class="row">
+            <div class="col-xs-12">
+
+            <div id="map-canvas"></div>
+            </div>
+            </div>
+        </div>
+     
+
+    <!-- /.page-content -->
+
+
 	
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->		     
-  <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
-    </style>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrgMqxT3DIKg4PQkuqNeqbjOCZwLQKxc0&sensor=false">
-    </script>
-  </head>
-  <body>
-    <div id="map-canvas">asfdsa</div>
-  </body>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderScripts" ID="Content2" runat="server">
+    <script src="js/addmarkers.js"></script>
+    <script src="js/geolocation.js"></script>
     
-<script src="//code.jquery.com/jquery-latest.js"></script>
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
-<script src="js/addmarkers.js"></script>
-<script src="js/geolocation.js"></script>
 
-</html>
+</asp:Content>

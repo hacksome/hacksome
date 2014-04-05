@@ -172,14 +172,12 @@ namespace comScoreSocialDashboard.services
                             {
                                 latitude = tweet.Coordinates.Latitude;
                                 longitude = tweet.Coordinates.Longitude;
-                            } else if (!String.IsNullOrEmpty(tweet.Creator.Location))
+                            } 
+                            else if (!String.IsNullOrEmpty(tweet.Creator.Location))
                             {
                                 try
                                 {
                                     var address = geocoder.Geocode(tweet.Creator.Location.Trim()).ToList();
-                                    //var geo= address.Where(a => !a.IsPartialMatch).Select(a => a[GoogleAddressType.Country]).First();
-
-                                    //if(geo !=null){
                                     if (address.Count > 0)
                                     {
                                         latitude = address.ToList()[0].Coordinates.Latitude;
