@@ -42,6 +42,7 @@
     <Reference Include="nunit.framework">
       <HintPath>references\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -389,6 +390,7 @@
     <Content Include="js\addmarkers.js" />
     <Content Include="js\default.js" />
     <Content Include="js\geolocation.js" />
+    <Content Include="js\mostrecenttweets.js" />
     <Content Include="js\nolocation.js" />
     <Content Include="js\projectranking.js" />
     <Content Include="test\testdata\piechartdata.txt" />
@@ -421,6 +423,9 @@
     </Compile>
     <Compile Include="TwitterMap.aspx.designer.cs">
       <DependentUpon>TwitterMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TwitterTweets.ashx.cs">
+      <DependentUpon>TwitterTweets.ashx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -488,6 +493,7 @@
     <Content Include="test\testdata\dummytwitter.txt" />
     <Content Include="PieTweetData.ashx" />
     <Content Include="SemanticScoreData.ashx" />
+    <Content Include="TwitterTweets.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

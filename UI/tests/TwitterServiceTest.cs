@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Web;
 using comScoreSocialDashboard.services;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace comScoreSocialDashboard.tests
@@ -43,21 +47,21 @@ namespace comScoreSocialDashboard.tests
         public void TestGeoSearch()
         {
 
-            var tweets = new Twitterservice().GetSearchByKeyWordAndLocation();
+            var tweets = new Twitterservice().GetSearchByKeyWordAndLocation().OrderBy(x => x.Date).ToList();
             
+            Console.WriteLine(tweets[0].Date);
             Console.WriteLine(tweets.Count);
             
-            Console.WriteLine();
-            //tweets = tweets.Take(2).ToList();
+           Console.WriteLine(JsonConvert.SerializeObject(tweets, Formatting.Indented));
             
-            foreach (var tweet in tweets)
-            {
-                Console.WriteLine(tweet.Coordinates);
-                Console.WriteLine(tweet.Msg);
-                //Console.WriteLine(tweet.Creator.ProfileBackgroundColor);
+            //foreach (var tweet in tweets)
+            //{
+            //    Console.WriteLine(tweet.Coordinates);
+            //    Console.WriteLine(tweet.Msg);
+            //    //Console.WriteLine(tweet.Creator.ProfileBackgroundColor);
 
-                //Console.WriteLine(tweet.);
-            }
+            //    //Console.WriteLine(tweet.);
+            //}
         }
 
     }

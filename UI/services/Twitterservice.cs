@@ -8,9 +8,44 @@ using Tweetinvi;
 using TweetinviCore.Enum;
 using TweetinviCore.Interfaces;
 using TweetinviCore.Interfaces.Models;
+using System.Runtime.Serialization;
 
 namespace comScoreSocialDashboard.services
 {
+    [DataContract]
+    public class TwitterUser
+    {
+        [DataMember(EmitDefaultValue = false)]
+        public string ScreenName { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public string Location { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public int FollowerCount { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public int FavoriteCount { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public int FriendsCount { get; set; }
+        [DataMember(EmitDefaultValue = false)]
+        public string ProfileImgUrl { get; set; }
+    }
+
+    [DataContract]
+    public class TweetInfo
+    {
+        [DataMember]
+        public string Msg { get; set; }
+        [DataMember]
+        public DateTime Date { get; set; }
+        [DataMember]
+        public string MsgId { get; set; }
+        [DataMember]
+        public Double Long { get; set; }
+        [DataMember]
+        public Double Lat { get; set; }
+        [DataMember]
+        public TwitterUser User { get; set; }
+    }
+
     public class Twitterservice
     {
 
@@ -42,46 +77,28 @@ namespace comScoreSocialDashboard.services
                                             "comScore qSearch",
                                             "comScore Device Essentials",
                                             "comScore Reach/Frequency"
-                                        }; 
+                                        };
         public Twitterservice()
         {
             TwitterCredentials.SetCredentials(AccessToken, AccessTokenSecret, TokenConsumerKey, TokenConsumerSecret);
         }
 
-        public class TwitterUser
-        {
-            public string ScreenName { get; set; }
-            public string Location { get; set; }
-            public int FollowerCount { get; set; }
-            public int FavoriteCount { get; set; }
-            public int FriendsCount { get; set; }
-            public string ProfileImgUrl { get; set; }
-        }
 
-        public class TweetInfo
-        {
-            public  string Msg { get; set; }
-            public  DateTime Date { get; set; }
-            public string MsgId { get; set; }
-            public ICoordinates Coordinates{get; set;}
-            public TwitterUser User { get; set; }
-        }
-
-        public TwitterUser  GetTwitterUser()
+        public TwitterUser GetTwitterUser()
         {
             var x = User.GetUserFromScreenName("comscore");
 
             var y = x.ProfileImageUrl;
             var z = x.Timeline;
-        
+
             return new TwitterUser
                    {
                        ScreenName = x.Name,
-                       Location= x.Location,
+                       Location = x.Location,
                        FollowerCount = x.FollowersCount,
                        FavoriteCount = x.FavouritesCount,
                        FriendsCount = x.FriendsCount
-                       
+
                    };
             // User_GetCurrentUser();
 
@@ -122,30 +139,35 @@ namespace comScoreSocialDashboard.services
             List<TweetInfo> infoList = new List<TweetInfo>();
             foreach (var keyword in keywords)
             {
-                var words = keyword.Split(new [] {','});
+                var words = keyword.Split(new[] { ',' });
                 foreach (string t in words)
                 {
                     var searchParameter = Search.GenerateSearchTweetParameter(t);
+                    searchParameter.SinceId = 2000;
+                   // searchParameter.
                     var tweets = Search.SearchTweets(searchParameter);
                     foreach (var tweet in tweets)
                     {
+                        
                         infoList.Add(new TweetInfo
                                      {
                                          Msg = tweet.Text,
                                          MsgId = tweet.IdStr,
                                          Date = tweet.CreatedAt,
-                                         Coordinates = tweet.Coordinates,
+                                         Lat =tweet.Coordinates!=null? tweet.Coordinates.Latitude:0,
+                                         Long = tweet.Coordinates!=null? tweet.Coordinates.Longitude:0,
                                          User = new TwitterUser
                                                 {
                                                     ScreenName = tweet.Creator.ScreenName,
-                                                    ProfileImgUrl = tweet.Creator.ProfileImageUrl
+                                                    ProfileImgUrl = tweet.Creator.ProfileImageUrl,
+                                                    Location = tweet.Creator.Location
                                                 }
                                      });
                     }
                 }
             }
             return infoList;
-        } 
+        }
 
 
         private static void Search_FilteredSearch()

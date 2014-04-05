@@ -942,7 +942,7 @@ namespace Examplinvi
             searchParameter.Until = new DateTime(2013, 12, 1);
             searchParameter.SinceId = 399616835892781056;
             searchParameter.MaxId = 405001488843284480;
-
+        //    searchParameter.sin
             var tweets = Search.SearchTweets(searchParameter);
             tweets.ForEach(t => Console.WriteLine(t.Text));
         }
