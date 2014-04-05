@@ -62,7 +62,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Tweetinvi.API">
+    <Reference Include="Tweetinvi.API, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>references\Tweetinvi.API.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -396,10 +397,12 @@
     <Content Include="js\mostrecenttweets.js" />
     <Content Include="js\nolocation.js" />
     <Content Include="js\projectranking.js" />
+    <Content Include="js\twittersearch.js" />
     <Content Include="test\testdata\piechartdata.txt" />
     <Content Include="test\testdata\popularityrankingdata.txt" />
     <Content Include="test\testdata\trenddata.txt" />
     <Content Include="TwitterMap.aspx" />
+    <Content Include="TwitterSearch.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -414,11 +417,17 @@
       <DependentUpon>PieTweetData.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="search.ashx.cs">
+      <DependentUpon>search.ashx</DependentUpon>
+    </Compile>
     <Compile Include="SemanticScoreData.ashx.cs">
       <DependentUpon>SemanticScoreData.ashx</DependentUpon>
     </Compile>
     <Compile Include="services\CheatSheet.cs" />
+    <Compile Include="services\SearchService.cs" />
+    <Compile Include="services\SemantriaService.cs" />
     <Compile Include="services\Twitterservice.cs" />
+    <Compile Include="tests\SearchServiceTest.cs" />
     <Compile Include="tests\TwitterServiceTest.cs" />
     <Compile Include="TwitterMap.aspx.cs">
       <DependentUpon>TwitterMap.aspx</DependentUpon>
@@ -426,6 +435,13 @@
     </Compile>
     <Compile Include="TwitterMap.aspx.designer.cs">
       <DependentUpon>TwitterMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TwitterSearch.aspx.cs">
+      <DependentUpon>TwitterSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TwitterSearch.aspx.designer.cs">
+      <DependentUpon>TwitterSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="TwitterTweets.ashx.cs">
       <DependentUpon>TwitterTweets.ashx</DependentUpon>
@@ -497,6 +513,7 @@
     <Content Include="PieTweetData.ashx" />
     <Content Include="SemanticScoreData.ashx" />
     <Content Include="TwitterTweets.ashx" />
+    <Content Include="search.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

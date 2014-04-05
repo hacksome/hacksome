@@ -135,7 +135,7 @@ namespace comScoreSocialDashboard.services
             return Search.SearchTweets(keyword);
         }
 
-        public List<TweetInfo> GetSearchByKeyWordAndLocation(bool geoCode = false, List<string> keywords = null)
+        public List<TweetInfo> GetSearchByKeyWordAndLocation(bool geoCode = false,  List<string> keywords = null)
         {
             keywords = keywords ?? _preferedkeywordList;
             GoogleGeocoder geocoder = new GoogleGeocoder() ;
@@ -146,7 +146,7 @@ namespace comScoreSocialDashboard.services
                 foreach (string t in words)
                 {
                     var searchParameter = Search.GenerateSearchTweetParameter(t);
-                    searchParameter.SinceId = 2000;
+                   
                    // searchParameter.
                     var tweets = Search.SearchTweets(searchParameter);
                     foreach (var tweet in tweets)

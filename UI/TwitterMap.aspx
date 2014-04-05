@@ -14,7 +14,7 @@
                 <i class="icon-home home-icon"></i>
                 <a href="#">Home</a>
             </li>
-            <li class="active">Dashboard</li>
+            <li class="active">Map</li>
         </ul>
         <!-- .breadcrumb -->
 
@@ -37,14 +37,14 @@
             <h1>Twitter Map
 								<small>
                                     <i class="icon-double-angle-right"></i>
-                                    Twitter + Google Map
+                                    Where are the twitters?
                                 </small>
             </h1>
         </div>
             <div class="row">
             <div class="col-xs-12">
 
-            <div id="map-canvas"></div>
+            <div id="map-canvas" style="width: 600px; height: 600px"></div>
             </div>
             </div>
         </div>
@@ -56,8 +56,11 @@
 	
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentPlaceHolderScripts" ID="Content2" runat="server">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrgMqxT3DIKg4PQkuqNeqbjOCZwLQKxc0&sensor=false"></script>
+
     <script src="js/addmarkers.js"></script>
     <script src="js/geolocation.js"></script>
-    
+   <script src="js/twittermap.js"></script>
+     
 
 </asp:Content>
