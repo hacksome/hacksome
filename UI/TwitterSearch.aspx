@@ -62,7 +62,7 @@
                                             <div class="row" id="searcha">
 
                                                 <div class="col-xs-11 label label-lg label-info arrowed-in arrowed-right">
-                                                    <div class="title">Seach a</div>
+                                                    <div class="title"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -100,7 +100,7 @@
 
                                             <div class="row">
                                                 <div class="col-xs-11 label label-lg label-success arrowed-in arrowed-right">
-                                                    <div id="searchb">Seach a</div>
+                                                    <div class="title"></div>
                                                 </div>
                                             </div>
 
