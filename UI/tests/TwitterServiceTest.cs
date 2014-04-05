@@ -6,6 +6,9 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Web;
 using comScoreSocialDashboard.services;
+using GoogleMapsApi;
+using GoogleMapsApi.Entities.Geocoding.Request;
+using GoogleMapsApi.Entities.Geocoding.Response;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -62,6 +65,19 @@ namespace comScoreSocialDashboard.tests
 
             //    //Console.WriteLine(tweet.);
             //}
+        }
+
+        [Test]
+        public void GeoCode()
+        {
+            // Geocode
+            var geocodeRequest = new GeocodingRequest
+            {
+                Address = "new york city",
+            };
+
+            GeocodingResponse geocode = GoogleMaps.Geocode.Query(geocodeRequest);
+            Console.WriteLine(geocode);
         }
 
     }

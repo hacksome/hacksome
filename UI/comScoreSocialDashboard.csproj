@@ -502,6 +502,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GoogleMapsApi\GoogleMapsApi.csproj">
+      <Project>{61e9fc82-47b0-43c3-8749-95d3a9967060}</Project>
+      <Name>GoogleMapsApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Semantria\Semantria.Com.csproj">
       <Project>{e942ab83-da93-4b16-a826-ff3993b47329}</Project>
       <Name>Semantria.Com</Name>
