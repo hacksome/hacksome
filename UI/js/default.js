@@ -4,7 +4,6 @@
 
     var trendChartData = [];
 
-
     function gd(date) {
         return new Date(date).getTime();
     }
@@ -28,12 +27,10 @@
 
     }
     var trendPlaceholder = $('#trendchart-placeholder').css({ 'min-height': '150px' });
+
     function getTrendChartData() {
         $.getJSON('test/testdata/trenddata.txt').done(function (data) {
-
-
             drawTrendChart(trendPlaceholder, parseTrendData(data));
-            //            console.log(parseTrendData(data));
         });
     }
 
@@ -54,9 +51,7 @@
                 ticks: 10
             },
             grid: {
-                //backgroundColor: { colors: ["#fff", "#fff"] },
                 borderWidth: 0
-                //borderColor: '#555'
             }
         });
     }
