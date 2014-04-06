@@ -62,6 +62,7 @@ namespace comScoreSocialDashboard
             public string ProductId { get; private set; }
             public ITweet TweetData { get; private set; }
             public Guid Guid { get; private set; }
+            public string  Id { get; set; }
             public DocAnalyticData SemanticData { get; set; }
 
             public SemanticElement(string productId, ITweet tweet)

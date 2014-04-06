@@ -430,6 +430,7 @@
     <Compile Include="services\SemantriaService.cs" />
     <Compile Include="services\Twitterservice.cs" />
     <Compile Include="tests\SearchServiceTest.cs" />
+    <Compile Include="tests\SemantriaTest.cs" />
     <Compile Include="tests\TwitterServiceTest.cs" />
     <Compile Include="TwitterMap.aspx.cs">
       <DependentUpon>TwitterMap.aspx</DependentUpon>
