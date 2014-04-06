@@ -180,7 +180,11 @@ namespace comScoreSocialDashboard
 
                 foreach (var result in results)
                 {
-                    sems.First(x => x.Guid.ToString() == result.Id).SemanticData = result;
+                    SemanticElement elem = sems.First(x => x.Guid.ToString() == result.Id);
+                    if (elem != null)
+                    {
+                        elem.SemanticData = result;
+                    }
                 }
 
             }
