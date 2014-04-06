@@ -87,7 +87,7 @@ namespace comScoreSocialDashboard
                     }
 
                     _populateSemantic(sems);
-                    _context.Session["sems"] = sems;
+                    _context.Session["sems"] = sems.Where(x => x.SemanticData != null).ToList();
                 }
                 return _context.Session["sems"] as List<SemanticElement>;
             }
