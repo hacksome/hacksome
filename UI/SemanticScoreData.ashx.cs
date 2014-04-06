@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.SessionState;
 using Newtonsoft.Json.Linq;
 using Semantria.Com;
 using Semantria.Com.Mapping;
@@ -16,12 +17,15 @@ namespace comScoreSocialDashboard
     /// <summary>
     /// Summary description for Handler1
     /// </summary>
-    public class SemanticScoreData : IHttpHandler
+    public class SemanticScoreData : IHttpHandler, IRequiresSessionState 
     {
+        private HttpContext _context;
         public void ProcessRequest(HttpContext context)
         {
+            _context = context;
             context.Response.ContentType = "text/plain";
-            context.Response.Write(string.Format("{{\"data\": {0} }}", _getTweetPieCount().ToString()));
+            context.Response.Write(string.Format("{{\"data\": {0} }}"
+                , string.IsNullOrEmpty(context.Request.QueryString["b"]) ? _getTweetPieCount() : _getTweetBarData()));
         }
 
         public bool IsReusable
@@ -68,27 +72,34 @@ namespace comScoreSocialDashboard
             }
         }
 
+        List<SemanticElement> Semantics
+        {
+            get
+            {
+                if (_context.Session["sems"] == null)
+                {
+                    var svc = new Twitterservice();
+                    var sems = new List<SemanticElement>();
+                    foreach (var key in _keys)
+                    {
+                        List<ITweet> tweet = svc.GeTweetsByKeyWord(key);
+                        sems.AddRange(tweet.Select(x => new SemanticElement(key, x)));
+                    }
+
+                    _populateSemantic(sems);
+                    _context.Session["sems"] = sems;
+                }
+                return _context.Session["sems"] as List<SemanticElement>;
+            }
+        }
+
+
+
         private JArray _getTweetPieCount()
         {
             var attrArr = new JArray();
-            var svc = new Twitterservice();
 
-            var sems = new List<SemanticElement>();
-            foreach (var key in _keys)
-            {
-                List<ITweet> tweet = svc.GeTweetsByKeyWord(key);
-                sems.AddRange(tweet.Select(x => new SemanticElement(key, x)));
-            }
-
-            _populateSemantic(sems);
-
-            //IEnumerable<SemanticElement> results = _keys.Select(x => new SemanticElement (x, svc.GeTweetsByKeyWord(x)));
-
-            //int totalCount = results.Sum(x => x.Value.Count);
-
-            //Dictionary<string, double> data = results.ToDictionary(x => x.Key, x => (double) x.Value.Count/totalCount);
-
-            var resultGroups = sems.GroupBy(x => x.ProductId);
+            var resultGroups = Semantics.GroupBy(x => x.ProductId);
 
             int i = 0;
             foreach (var group in resultGroups)
@@ -106,6 +117,28 @@ namespace comScoreSocialDashboard
         }
 
 
+        private JArray _getTweetBarData()
+        {
+            var attrArr = new JArray();
+
+            var resultGroups = Semantics.GroupBy(x => x.ProductId);
+
+            int i = 0;
+            foreach (var group in resultGroups)
+            {
+                double score = group.Sum(x => x.SemanticData.SentimentScore) / group.Count();
+                var o = new JObject();
+                o.Add("pos", 2*i + 1);
+                o.Add("score", score * 100);
+                attrArr.Add(new JObject
+                           {
+                               {"label", new JValue(group.Key)},
+                               {"data", o},
+                               {"color", new JValue(Colors[i++ % Colors.Count])}
+                           });
+            }
+            return attrArr;
+        }
 
         private void _populateSemantic(List<SemanticElement> sems)
         {

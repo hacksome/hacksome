@@ -16,10 +16,8 @@
             trend = {};
             trend.label = info.label;
             trend.data = [];
-            for (var j = 0; j < info.data.length; j++) {
-                var tweetinfo = info.data[j];
-                trend.data.push([gd(tweetinfo.date), tweetinfo.tweets]);
-            }
+            trend.color = info.color;
+            trend.data.push([info.data.pos, info.data.score]);
             projectTweetTrend.push(trend);
         }
 
@@ -29,7 +27,7 @@
     var trendPlaceholder = $('#trendchart-placeholder').css({ 'min-height': '150px' });
 
     function getTrendChartData() {
-        $.getJSON('test/testdata/trenddata.txt').done(function (data) {
+        $.getJSON('SemanticScoreData.ashx?b=1').done(function (data) {
             drawTrendChart(trendPlaceholder, parseTrendData(data));
         });
     }
@@ -41,18 +39,27 @@
             hoverable: true,
             shadowSize: 0,
             series: {
-                lines: { show: true },
-                points: { show: true }
+                bars: {
+                    show: true
+                    , barWidth: .5
+                    , align: 'center'
+                }
             },
             xaxis: {
-
+                ticks: [[1, 'zero'], [3, "one mark"], [5, "one mark"], [7, "one mark"]],
+                min: 0,
+                max: 10
             },
             yaxis: {
-                ticks: 10
+                ticks: 5
             },
             grid: {
                 borderWidth: 0
+            },
+            legend: {
+                show: false
             }
+            
         });
     }
 
