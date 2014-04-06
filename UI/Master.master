@@ -107,12 +107,14 @@
 
                     <li>
                         <a href="TwitterSearch.aspx">
+                            <i class="icon-search"></i>
                             <span class="menu-text">Search</span>
                         </a>
                     </li>
 
                     <li>
                         <a href="TwitterMap.aspx">
+                             <i class="icon-tag"></i>
                             <span class="menu-text">Twitter Map</span>
                         </a>
                     </li>
@@ -186,6 +188,7 @@
 
     <script src="assets/js/ace-elements.min.js"></script>
     <script src="assets/js/ace.min.js"></script>
+    <script type="text/javascript" src="test/dummybardata.js"></script>
 
     <!-- inline scripts related to this page -->
 

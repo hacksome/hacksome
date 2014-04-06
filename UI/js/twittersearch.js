@@ -1,6 +1,9 @@
 ﻿jQuery(function ($) {
     var search1 = $('#search-input1');
     var search2 = $('#search-input2');
+    var search1Data;
+    var search2Data;
+    
     var mapOptions = {
         zoom: 2
     };
@@ -21,11 +24,31 @@
             return false;
         }
     });
-
     function getSearchResult(q, id) {
-        //test/testdata/dummysearchresult.txt
-        $.getJSON('search.ashx?q='+ q).done(function (data) {
-            setData(data, id);
+
+        $.ajax({
+            url: 'search.ashx?q=' + q,
+            success: function (data) {
+                try {
+                    var parseData = JSON.parse(data);
+                    if (id == "searcha") {
+                        search1Data = parseData.data.length == 0 ? dummySearchAData : parseData;
+                    } else {
+                        search2Data = parseData.data.length == 0 ? dummySearchBData : parseData;
+                    }
+                } catch (e) {
+                    if (id == "searcha") {
+                        search1Data = dummySearchAData;
+                    } else {
+                        search2Data = dummySearchBData;
+                    }
+                }
+
+                setData(id=="searcha"?search1Data:search2Data, id);
+            },
+            error: function () {
+                setData(id == "searcha" ? dummySearchAData : dummySearchBData, id);
+            }
         });
     }
     

@@ -98,7 +98,7 @@
                                                 </form>
                                             </div>
 
-                                            <div class="row">
+                                            <div class="row" id="searchb">
                                                 <div class="col-xs-11 label label-lg label-success arrowed-in arrowed-right">
                                                     <div class="title"></div>
                                                 </div>

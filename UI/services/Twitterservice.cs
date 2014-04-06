@@ -145,10 +145,8 @@ namespace comScoreSocialDashboard.services
                 var words = keyword.Split(new[] { ',' });
                 foreach (string t in words)
                 {
-                    var searchParameter = Search.GenerateSearchTweetParameter(t);
-                   
                    // searchParameter.
-                    var tweets = Search.SearchTweets(searchParameter);
+                    var tweets = Search.SearchTweets(t);
                     foreach (var tweet in tweets)
                     {
                         double latitude = 0.0;

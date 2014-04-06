@@ -3,7 +3,7 @@
     /*************************** Trend chart code ***********************/
 
     var trendChartData = [];
-
+    var ticks = [];
     function gd(date) {
         return new Date(date).getTime();
     }
@@ -14,6 +14,7 @@
         for (index = 0; index < tdata.length; index++) {
             var info = tdata[index];
             trend = {};
+            ticks.push(index, info.label);
             trend.label = info.label;
             trend.data = [];
             trend.color = info.color;
@@ -27,15 +28,33 @@
     var trendPlaceholder = $('#trendchart-placeholder').css({ 'min-height': '150px' });
 
     function getTrendChartData() {
-        $.getJSON('SemanticScoreData.ashx?b=1').done(function (data) {
-            drawTrendChart(trendPlaceholder, parseTrendData(data));
-        });
+        var validJson;
+        $.ajax({
+//            dataType: "json",
+            url: 'SemanticScoreData.ashx?b=1',
+            success: function (data) {
+                try {
+                    validJson = JSON.parse(data);
+                    //pieChartData = parseData.data.length == 0 ? dummyPieData : parseData.data;
+                } catch (e) {
+                    validJson = dummyBarData;
+                    // return false;
+                }
+
+                var d = validJson.data.length ? validJson.data : dummyBarData;
+                drawTrendChart(trendPlaceholder, parseTrendData(d));
+            },
+            error: function() {
+                drawTrendChart(trendPlaceholder, dummyBarData);
+            }
+    });
+       
     }
 
 
-    function drawTrendChart(placeholder, data) {
+    function drawTrendChart(tplaceholder, data) {
 
-        $.plot(placeholder, data, {
+        $.plot(tplaceholder, data, {
             hoverable: true,
             shadowSize: 0,
             series: {
@@ -46,7 +65,7 @@
                 }
             },
             xaxis: {
-                ticks: [[1, 'zero'], [3, "one mark"], [5, "one mark"], [7, "one mark"]],
+                ticks: [],
                 min: 0,
                 max: 10
             },
@@ -57,7 +76,7 @@
                 borderWidth: 0
             },
             legend: {
-                show: false
+                show: true
             }
             
         });
@@ -78,10 +97,30 @@
     var placeholder = $('#piechart-placeholder').css({ 'width': '70%', 'min-height': '150px' });
 
     function getPieChartData() {
-        $.getJSON('pietweetdata.ashx').done(function (data) {
-            pieChartData = data.data;
-            drawPieChart(placeholder, data.data);
+
+        $.ajax({
+            //dataType: "json",
+            url: 'pietweetdata.ashx',
+            success: function (data) {
+                try {
+                   var parseData= JSON.parse(data);
+                   pieChartData = parseData.data.length == 0 ? dummyPieData : parseData.data;
+               } catch (e) {
+                    pieChartData = dummyPieData;
+                    // return false;
+                }
+               // pieChartData =data.data.length == 0? dummyPieData:data.data;
+                
+               drawPieChart(placeholder, pieChartData);
+            },
+            error: function() {
+                drawPieChart(placeholder, dummyPieData);
+            }
         });
+
+//        $.getJSON('pietweetdata.ashx').done(function (data) {
+        
+        //  });
     }
     function drawPieChart(placeholder, data, position) {
         $.plot(placeholder, data, {

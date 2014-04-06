@@ -1,8 +1,19 @@
 ﻿jQuery(function ($) {
 
     function getPopularityRanking() {
-        $.getJSON('SemanticScoreData.ashx').done(function (data) {
-            setData(data);
+        $.ajax({
+            dataType: "json",
+            url: 'SemanticScoreData.ashx',
+            success: function (data) {
+                if (data.data.length == 0) {
+                    data = dummyPopularityData;
+                }
+                setData(data);
+                
+            },
+            error: function() {
+                setData(dummyPopularityData);
+            }
         });
     }
 

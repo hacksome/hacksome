@@ -1,8 +1,15 @@
 ﻿jQuery(function ($) {
 
     function getMostRecentTweets() {
-        $.getJSON('twittertweets.ashx?limit=true').done(function (data) {
-            setData(data);
+        $.ajax({
+            dataType: "json",
+            url: 'twittertweets.ashx?limit=true',
+            success: function (data) {
+                setData(data);
+            },
+            error: function() {
+                setData(dummyTwitterData);
+            }
         });
     }
 

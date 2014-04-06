@@ -1,29 +1,32 @@
-﻿{
-"data": [
+﻿{"data": [
   {
-    "name": "social networks",
-    "score": 38.7,
-    "totaltweets": 12
+    "name": "comscore",
+    "score": -5.7693138718605042,
+    "totaltweets": 8,
+    "xfactor": -7.21164233982563
   },
   {
-    "name": "direct",
-    "score": 38.7,
-    "totaltweets": 111
+    "name": "comscore vce",
+    "score": 8.3333333333333321,
+    "totaltweets": 6,
+    "xfactor": 13.888888888888888
   },
   {
-    "name": "mmx",
-    "score": 4,
-    "totaltweets": 111
+    "name": "comScore Video Metrix",
+    "score": 5.4081335663795471,
+    "totaltweets": 3,
+    "xfactor": 18.027111887931824
   },
   {
-    "name": "social networks",
-    "score": 38.7,
-    "totaltweets": 23
+    "name": "comScore multiplatform",
+    "score": 16.33333365122477,
+    "totaltweets": 3,
+    "xfactor": 54.444445504082566
   },
   {
-    "name": "social networks",
-    "score": 38.7,
-   "totaltweets": 48
+    "name": "comScore digital analytics",
+    "score": 35.933335622151688,
+    "totaltweets": 3,
+    "xfactor": 119.7777854071723
   }
-]
-}
+] }

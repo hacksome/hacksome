@@ -1,12 +1,11 @@
-﻿{"data": [
+﻿{
+"data": [
   {
-    "label": "comscore",
+    "label": "comScore digital analytics",
     "data": {
       "pos": 1,
-      "score": 5.000000074505806
+      "score": 58.800005912780762
     },
     "color": "#68BC31"
   }
 ] }
-  
-  
