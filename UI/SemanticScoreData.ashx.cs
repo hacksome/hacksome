@@ -167,21 +167,26 @@ namespace comScoreSocialDashboard
                 // Wait ten seconds while Semantria process queued document
                 int resCount = sems.Count;
                 IList<DocAnalyticData> results = new List<DocAnalyticData>();
-                while (resCount > 0)
+                int i = 0;
+                while (resCount - results.Count > 0)
                 {
-                    System.Threading.Thread.Sleep(2000);
+                    System.Threading.Thread.Sleep(100);
 
                     // Requests processed results from Semantria service
                     //Console.WriteLine("Retrieving your processed results...");
                     ((List<DocAnalyticData>)results).AddRange(session.GetProcessedDocuments());
 
-                    resCount -= results.Count;
+                    if (++i > 100) break;
                 }
 
-
+                //var xxx = sems.Select(x => x.Guid.ToString()).OrderBy(x => x);
                 foreach (var result in results)
                 {
-                    sems.First(x => x.Guid.ToString() == result.Id).SemanticData = result;
+                    IEnumerable<SemanticElement> elems = sems.Where(x => x.Guid.ToString() == result.Id);
+                    if (elems.Any())
+                    {
+                        elems.First().SemanticData = result;
+                    }
                 }
 
             }
