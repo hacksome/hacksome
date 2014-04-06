@@ -111,10 +111,10 @@
                 }
                // pieChartData =data.data.length == 0? dummyPieData:data.data;
                 
-               drawPieChart(placeholder, pieChartData);
+               drawPieChart(placeholder, pieChartData.data);
             },
             error: function() {
-                drawPieChart(placeholder, dummyPieData);
+                drawPieChart(placeholder, dummyPieData.data);
             }
         });
 
