@@ -399,7 +399,8 @@
     <Content Include="js\projectranking.js" />
     <Content Include="js\twittermap.js" />
     <Content Include="js\twittersearch.js" />
-    <Content Include="test\testdata\dummysearchresult.txt" />
+    <Content Include="test\DummyBarData.js" />
+    <Content Include="test\testdata\dummysearchresult_a.txt" />
     <Content Include="test\testdata\piechartdata.txt" />
     <Content Include="test\testdata\popularityrankingdata.txt" />
     <Content Include="test\testdata\trenddata.txt" />
