@@ -389,6 +389,7 @@
     <Content Include="css\twitterpulse.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="images\ajax-loader.gif" />
     <Content Include="images\csTwitter.png" />
     <Content Include="images\csTwitter_sm.png" />
     <Content Include="js\addmarkers.js" />

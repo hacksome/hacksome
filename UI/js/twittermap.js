@@ -6,20 +6,19 @@
     var mapData;
     $.ajax({
         url: 'twittertweets.ashx?map=1',
-        success: function (data) {
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
             try {
-                var parseData = JSON.parse(data);
-                mapData = parseData.data.length == 0 ? dummyTwitterData : parseData;
+                mapData = data.length == 0 ? dummyMapData : data;
             } catch (e) {
-                mapData = dummyTwitterData;
+                mapData = dummyMapData;
             }
-
             initialize('map-canvas', mapData, mapOptions);
         },
         error: function () {
-            initialize('map-canvas', dummyTwitterData, mapOptions);
+            initialize('map-canvas', dummyMapData, mapOptions);
         }
     });
-
 
 });

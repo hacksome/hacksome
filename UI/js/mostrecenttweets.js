@@ -3,9 +3,14 @@
     function getMostRecentTweets() {
         $.ajax({
             dataType: "json",
+            type: 'GET',
             url: 'twittertweets.ashx?limit=true',
             success: function (data) {
-                setData(data);
+                try {
+                    setData(data);
+                } catch (e)  {
+                    setData(dummyTwitterData);
+                }
             },
             error: function() {
                 setData(dummyTwitterData);

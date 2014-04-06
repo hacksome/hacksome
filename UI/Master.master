@@ -191,7 +191,6 @@
     <script type="text/javascript" src="test/dummybardata.js"></script>
 
     <!-- inline scripts related to this page -->
-
     <asp:ContentPlaceHolder ID="ContentPlaceHolderScripts" runat="server">
     </asp:ContentPlaceHolder>
 

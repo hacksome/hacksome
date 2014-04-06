@@ -28,13 +28,14 @@
 
         $.ajax({
             url: 'search.ashx?q=' + q,
+            type: 'GET',
+            dataType: 'json',
             success: function (data) {
                 try {
-                    var parseData = JSON.parse(data);
                     if (id == "searcha") {
-                        search1Data = parseData.data.length == 0 ? dummySearchAData : parseData;
+                        search1Data = !data.TweetInfos? dummySearchAData : data;
                     } else {
-                        search2Data = parseData.data.length == 0 ? dummySearchBData : parseData;
+                        search2Data = !data.TweetInfos ? dummySearchBData : data;
                     }
                 } catch (e) {
                     if (id == "searcha") {

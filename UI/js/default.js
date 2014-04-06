@@ -30,11 +30,12 @@
     function getTrendChartData() {
         var validJson;
         $.ajax({
-//            dataType: "json",
             url: 'SemanticScoreData.ashx?b=1',
+            type: 'GET',
+            dataType: 'json',
             success: function (data) {
                 try {
-                    validJson = JSON.parse(data);
+                    validJson = data;
                     //pieChartData = parseData.data.length == 0 ? dummyPieData : parseData.data;
                 } catch (e) {
                     validJson = dummyBarData;
@@ -99,12 +100,13 @@
     function getPieChartData() {
 
         $.ajax({
-            //dataType: "json",
             url: 'pietweetdata.ashx',
+            type: 'GET',
+            dataType: 'json',
+
             success: function (data) {
                 try {
-                   var parseData= JSON.parse(data);
-                   pieChartData = parseData.data.length == 0 ? dummyPieData : parseData;
+                   pieChartData = data.data.length == 0 ? dummyPieData : data;
                } catch (e) {
                     pieChartData = dummyPieData;
                     // return false;
