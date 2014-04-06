@@ -41,7 +41,7 @@
                     // return false;
                 }
 
-                var d = validJson.data.length ? validJson.data : dummyBarData;
+                var d = validJson.data.length ? validJson : dummyBarData;
                 drawTrendChart(trendPlaceholder, parseTrendData(d));
             },
             error: function() {
@@ -104,7 +104,7 @@
             success: function (data) {
                 try {
                    var parseData= JSON.parse(data);
-                   pieChartData = parseData.data.length == 0 ? dummyPieData : parseData.data;
+                   pieChartData = parseData.data.length == 0 ? dummyPieData : parseData;
                } catch (e) {
                     pieChartData = dummyPieData;
                     // return false;
