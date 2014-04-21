@@ -51,10 +51,10 @@ namespace comScoreSocialDashboard.services
     public class Twitterservice
     {
 
-        const string AccessToken = "2374223100-g9mrE49jDRjc0YZrubFHgxzR4meZtsgU4XjCfV6";
-        const string AccessTokenSecret = "YVLwV55gU6GjYG9hKpzzhAKfB5GoAvO5EKgjfjIbm81Ta";
-        const string TokenConsumerKey = "YKwZWc7vmSU8svBHLzM4yQ";
-        const string TokenConsumerSecret = "vZEYQ98YpJP41SGTuXh6hw2KnsiizkNERhnotr4NbM";
+        const string AccessToken = "";
+        const string AccessTokenSecret = "";
+        const string TokenConsumerKey = "";
+        const string TokenConsumerSecret = "";
 
         private List<string> _preferedkeywordList = new List<string>
                                         {
